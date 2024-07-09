@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GIT_TOKEN: ${{secrets.TOKEN}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,6 +47,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          token: ${{secrets.ACCESS_TOKEN}}
+          token: ${{env.GIT_TOKEN}}
           branch: gh-pages
           folder: docs/.vitepress/dist
