@@ -1,0 +1,30 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      GIT_USER: ${{ secrets.USER }}
+      GIT_PASS: ${{ secrets.TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: cd docs && npm install
+
+      - name: Build VuePress site
+        run: cd docs && npm run build
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd docs/src/.vuepress/dist
+          git init
+          git add -A
+          git commit -m 'deploy'
+          git push -f https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/${{ github.repository }} main:gh-pages
