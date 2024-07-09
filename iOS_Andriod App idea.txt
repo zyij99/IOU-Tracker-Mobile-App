@@ -1,0 +1,38 @@
+Idea:
+iOS/Andriod Mobile App
+
+IOU - Group
+app that takes a recipt image and lists all the fees and cost including name of item
+the names of participants are customizable and can be assigned to items after indiciating the number of participants
+The other members may join in on this IOU and pay directly from it.
+feature: calculate the cost that each person owes and display it {name: owe}
+
+Use case: Resturant w/ friends, Uber Rides
+
+
+Custom options:IOU - Individual
+Custom IOUs - create customized IOUs to keep track of who owes you what with option to edit entry and price.
+You can invite someone else (assuming the person that owes you money) to this IOU and they'll be able to make payments and see the recipt
+Option to include interest over time and that interest will show on virtual recipit for custom IOUs at a rate that the user accepts (for this option both users must consent to this IOU)
+There should also be a revision history feature and any significant changes that deal with payment must be verified by both parties (such as a new entry). Alerts via push.
+
+Payment:
+when making payment there will be an option to customize your note, it will show the day that the payment was made and any remaining balance owed.
+
+Homepage: Gives signin option and create account option
+Once signed in. There is a signout feature, view IOUs, Pay IOUs, Make IOUs
+Tabs: Account, Payment Methods, Settings
+
+Implement Light/Dark Mode
+
+
+App feature:
+Individual IOUs and Group IOUs
+
+
+Tech stack:
+GCP + Firebase (Storage & Backend)
+React Native - JavaScript
+Containerization: GCP - Kubernetes (maybe wont need)
+Testing: Jest Framework
+Github - Version Control
