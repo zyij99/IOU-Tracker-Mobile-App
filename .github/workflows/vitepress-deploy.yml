@@ -5,6 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd docs
+          cd docs 
           npm install
 
       - name: Build with VitePress
@@ -32,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: VitePress Build
+          name: vitepress-build
           path: docs/.vitepress/dist
 
   deploy:
@@ -42,9 +47,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v2
         with:
-          token: ${{ secrets.TOKEN }}
-          branch: gh-pages
-          folder: docs/.vitepress/dist
+          name: vitepress-build
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: dist
