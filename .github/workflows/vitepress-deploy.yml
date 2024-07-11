@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: vitepress-build
-          path: docs/.vitepress/dist
+          path: docs/.vitepress
 
   deploy:
     runs-on: ubuntu-latest
