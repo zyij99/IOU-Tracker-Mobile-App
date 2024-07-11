@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IOUTracker",
-    "slug": "IOUTracker",
+    "name": "IOU_Tracker",
+    "slug": "IOU_Tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
