@@ -19,12 +19,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'  # Adjust Node.js version as needed
+          node-version: '20'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           cd docs 
           npm install
@@ -34,16 +34,11 @@ jobs:
           cd docs
           npm run docs:build
 
-      - name: Check Build Output
-        run: |
-          ls -l docs/.vitepress/dist  # Verify build output contents
-          cat docs/.vitepress/dist/index.html  # Inspect HTML content for correct paths
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: vitepress-build
-          path: docs/.vitepress/dist  # Adjust path to include `docs` if needed
+          path: docs/.vitepress/dist
 
   deploy:
     runs-on: ubuntu-latest
